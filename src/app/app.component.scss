@@ -1,0 +1,19 @@
+.container {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    height: 100%;
+}
+
+app-header {
+    height: 15%;
+}
+
+app-main {
+    height: 70%;
+}
+
+app-footer {
+    height: 15%;
+}

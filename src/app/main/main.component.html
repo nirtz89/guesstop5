@@ -5,11 +5,13 @@
         <div
         cdkDropList
         #todoList="cdkDropList"
-        [cdkDropListData]="todo"
+        id="bucket-list"
+        [cdkDropListData]="songs"
         [cdkDropListConnectedTo]="[doneList]"
         class="example-list"
+        [cdkDropListEnterPredicate]="canDragFromBucket"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of todo" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of songs" cdkDrag>{{item}}</div>
         </div>
     </div>
     
@@ -19,11 +21,13 @@
         <div
         cdkDropList
         #doneList="cdkDropList"
-        [cdkDropListData]="done"
+        id="guess-list"
+        [cdkDropListData]="guess"
         [cdkDropListConnectedTo]="[todoList]"
         class="example-list"
+        [cdkDropListEnterPredicate]="canDragFromGuess"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of done" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of guess; index as i" cdkDrag>{{i+1}}. {{item}}</div>
         </div>
     </div>
 </div>

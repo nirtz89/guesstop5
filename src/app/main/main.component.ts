@@ -7,9 +7,8 @@ import {CdkDragDrop, moveItemInArray, transferArrayItem} from '@angular/cdk/drag
   styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
-  todo = ['Get to work', 'Pick up groceries', 'Go home', 'Fall asleep'];
-
-  done = ['Get up', 'Brush teeth', 'Take a shower', 'Check e-mail', 'Walk dog'];
+  songs = ['Bohemian Raphsody', 'Another One Bites The Dust', "Don't Stop Me Now", 'Under Pressure'];
+  guess = ['We Will Rock You', 'Crazy Little Thing Called Love', 'We Are The Champions', 'Radio Ga Ga', 'I Want To Break Free'];
 
   drop(event: CdkDragDrop<string[]>) {
     if (event.previousContainer === event.container) {
@@ -22,5 +21,13 @@ export class MainComponent {
         event.currentIndex,
       );
     }
+  }
+
+  canDragFromGuess = () => {
+    return this.guess.length < 5;
+  }
+
+  canDragFromBucket = () => {
+    return this.songs.length < 6;
   }
 }

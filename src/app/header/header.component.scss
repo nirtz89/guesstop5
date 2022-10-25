@@ -1,0 +1,32 @@
+:host {
+    width: 100%;
+    background: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-top: 0;
+    padding-bottom: 0;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+div.logo {
+    background: whitesmoke;
+    width: 100%;
+    padding: .5em;
+    font-size: 12px;
+    text-align: center;
+}
+
+div.container {
+    padding: 1em;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h1 {
+        padding: 0;
+        margin: 0;
+        margin-top: .25em;
+        font-size: 22px;
+    }
+}
