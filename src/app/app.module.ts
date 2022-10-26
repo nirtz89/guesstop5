@@ -3,12 +3,14 @@ import { BrowserModule } from '@angular/platform-browser';
 import { DragDropModule} from '@angular/cdk/drag-drop';
 import { MatButtonModule } from '@angular/material/button';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MainComponent } from './main/main.component';
 import { DialogContentExampleDialog, HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
+import { DataService } from './services/data.service';
 
 @NgModule({
   declarations: [
@@ -23,9 +25,10 @@ import { FooterComponent } from './footer/footer.component';
     BrowserAnimationsModule,
     DragDropModule,
     MatButtonModule,
-    MatDialogModule
+    MatDialogModule,
+    MatSnackBarModule
   ],
-  providers: [],
+  providers: [DataService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
