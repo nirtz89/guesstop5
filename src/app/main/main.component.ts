@@ -43,11 +43,12 @@ export class MainComponent {
   }
 
   canDragFromGuess = () => {
-    if (this.guess.length == 5) {
+    /** if (this.guess.length == 5) {
       this.openSnackBar("Guess list can't have more than 5 items");
       return false;
     }
-    return true;
+    return true; **/
+    return this.guess.length < 5;
   }
 
   canDragFromBucket = () => {
