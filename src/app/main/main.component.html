@@ -4,12 +4,12 @@
     
         <div
         cdkDropList
-        #todoList="cdkDropList"
+        #bucketList="cdkDropList"
         id="bucket-list"
         [cdkDropListData]="songs"
         [cdkDropListConnectedTo]="[doneList]"
         class="example-list"
-        [cdkDropListEnterPredicate]="canDragFromBucket"
+        [cdkDropListEnterPredicate]="canDragToBucket"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of songs" cdkDrag>{{item}}</div>
         </div>
@@ -23,11 +23,15 @@
         #doneList="cdkDropList"
         id="guess-list"
         [cdkDropListData]="guess"
-        [cdkDropListConnectedTo]="[todoList]"
+        [cdkDropListConnectedTo]="[bucketList]"
         class="example-list"
-        [cdkDropListEnterPredicate]="canDragFromGuess"
+        [cdkDropListEnterPredicate]="canDragToGuess"
         (cdkDropListDropped)="drop($event)">
         <div class="example-box" *ngFor="let item of guess; index as i" cdkDrag>{{i+1}}. {{item}}</div>
         </div>
     </div>
 </div>
+
+<footer>
+    <button mat-stroked-button color="accent" (click)="takeGuess()">I'm ready to take a guess!</button>
+</footer>

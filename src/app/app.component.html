@@ -1,5 +1,8 @@
-<div class="container">
+<div *ngIf="!isAppLoading" class="container">
     <app-header></app-header>
     <app-main></app-main>
-    <app-footer></app-footer>
+</div>
+<div *ngIf="isAppLoading" class="spinner-container">
+    <mat-spinner></mat-spinner>
+    <span>Fetching Artist and Songs...</span>
 </div>

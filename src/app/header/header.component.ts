@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import {MatDialog} from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Artist } from '../contracts';
 import { DataService } from '../services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-header',
@@ -11,11 +12,16 @@ import { DataService } from '../services/data.service';
 export class HeaderComponent implements OnInit {
 
   artist = '';
+  subscription?: Subscription;
+
   constructor(public dialog: MatDialog, public dataService: DataService) { }
 
   async ngOnInit(): Promise<void> {
-    const artist: Artist = await this.dataService.getArtistDataById('1dfeR4HaWDbWqFHLkxsg1d');
-    this.artist = artist.name;
+    this.subscription = this.dataService.onGetArtistAndTopTracks().subscribe(
+      (data) => {
+        const artist: Artist = data.artistData;
+        this.artist = artist.name;
+    });
   }
 
   openDialog() {

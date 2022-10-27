@@ -11,9 +11,18 @@ app-header {
 }
 
 app-main {
-    height: 70%;
+    height: 85%;
 }
 
-app-footer {
-    height: 15%;
+.spinner-container {
+    display: flex;
+    justify-content: center;
+    gap: 2em;
+    align-items: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+    span {
+        font-size: 1.5em;
+    }
 }
