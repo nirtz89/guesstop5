@@ -1,6 +1,5 @@
 :host {
     width: 100%;
-    background: #fff;
     display: flex;
     flex-direction: column;
     padding-top: 0;
@@ -10,7 +9,7 @@
 }
 
 div.logo {
-    background: whitesmoke;
+    background-color: #353535;
     width: 100%;
     padding: .5em;
     font-size: 12px;

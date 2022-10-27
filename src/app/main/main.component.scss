@@ -26,9 +26,8 @@
   }
   
   .example-list {
-    border: solid 1px #ccc;
+    border: solid 1px rgba(204, 204, 204, 0.205);
     min-height: 60px;
-    background: white;
     border-radius: 4px;
     overflow: hidden;
     display: block;
@@ -36,15 +35,15 @@
   
   .example-box {
     padding: 20px 10px;
-    border-bottom: solid 1px #ccc;
-    color: rgba(0, 0, 0, 0.87);
+    border-bottom: solid 1px rgba(204, 204, 204, 0.205);
+    color: #e2e2e2;
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
     box-sizing: border-box;
     cursor: move;
-    background: white;
+    background: #ffffff0d;
     font-size: 14px;
   }
   
@@ -87,5 +86,7 @@
         width: 80%;
         height: 50px;
         font-size: 20px;
+        border-color: #0e7031;
+        background: #0e7031;
     }
 }
