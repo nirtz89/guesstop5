@@ -19,7 +19,7 @@ export class MainComponent {
   }
 
   attempts = 0;
-  MAX_ATTEMPTS = 3;
+  MAX_ATTEMPTS = 5;
   songs = [] as any;
   guess = [] as any;
   trueTopTracks = [];
