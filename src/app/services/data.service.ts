@@ -20,6 +20,7 @@ export class DataService {
     '3qm84nBOXUEQ2vnTfUTTFC', // Guns N' Roses
     '711MCceyCBcFnzjGY4Q7Un', // AC/DC
     '3fMbdgg4jU18AjLCKBhRSm', // Michael Jackson
+    '0du5cEVh5yTK9QJze8zA0C', // Bruno Mars
   ]
 
   constructor() { }
