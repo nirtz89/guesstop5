@@ -11,6 +11,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GameOverDialog, MainComponent } from './main/main.component';
 import { DialogContentExampleDialog, HeaderComponent } from './header/header.component';
 import { DataService } from './services/data.service';
+import { SafePipe } from './safe.pipe';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { DataService } from './services/data.service';
     MainComponent,
     HeaderComponent,
     DialogContentExampleDialog,
-    GameOverDialog
+    GameOverDialog,
+    SafePipe
   ],
   imports: [
     BrowserModule,

@@ -23,11 +23,13 @@ export class MainComponent {
   songs = [] as any;
   guess = [] as any;
   trueTopTracks = [];
+  artistId: string = '';
 
   async ngOnInit(): Promise<void> {
     const subscription: Subscription = this.dataService.onGetArtistAndTopTracks().subscribe(
       (data) => {
       this.transformTracks(data.topTracks.tracks);
+      this.artistId = data.artistData.id;
     });
   }
 
@@ -72,11 +74,12 @@ export class MainComponent {
   }
 
   takeGuess() {
+    let correctGuesses = 0;
     this.attempts++;
     this.trueTopTracks.forEach((topTrack, index) => {
       if (this.guess[index] === topTrack) {
         this.guess[index].correct = true;
-        // this.openSnackBar("Correct!");
+        correctGuesses++;
       }
       else {
         if ((this.trueTopTracks as any).find((track: any) => track.name === this.guess[index].name)) {
@@ -84,14 +87,17 @@ export class MainComponent {
         }
       }
     });
-    if (this.attempts === this.MAX_ATTEMPTS) {
-      this.openDialog();
+    if (correctGuesses === 5) {
+      this.openDialog(true);
+    }
+    else if (this.attempts === this.MAX_ATTEMPTS) {
+      this.openDialog(false);
     }
   }
 
-  openDialog() {
+  openDialog(didWin: boolean) {
     const dialogRef = this.dialog.open(GameOverDialog, {
-      data: {didWin: false},
+      data: { didWin, artistId: this.artistId },
       disableClose: true
     });
   }
@@ -106,12 +112,15 @@ export class GameOverDialog {
   constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
 
   didWin: boolean = false;
+  artist?: string;
+  url: string = '';
 
   ngOnInit() {
     // will log the entire data object
     this.didWin = this.data.didWin;
+    this.artist = this.data.artistId;
+    this.url = `https://open.spotify.com/embed/artist/${this.artist}?utm_source=generator`
   }
-  
 
   retry = () => {
     window.location.reload();
