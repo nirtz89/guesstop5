@@ -19,6 +19,7 @@ export class DataService {
     '0k17h0D3J5VfsdmQ1iZtE9', // Pink Floyd
     '3qm84nBOXUEQ2vnTfUTTFC', // Guns N' Roses
     '711MCceyCBcFnzjGY4Q7Un', // AC/DC
+    '3fMbdgg4jU18AjLCKBhRSm', // Michael Jackson
   ]
 
   constructor() { }
