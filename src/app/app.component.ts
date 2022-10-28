@@ -19,7 +19,7 @@ export class AppComponent {
     this.dataService.getArtistAndTopTracksByRandom();
     this.subscription = this.dataService.onGetArtistAndTopTracks().subscribe((data) => {
       this.artistImage = data.artistData.images[0].url;
-      setTimeout(() => this.isAppLoading = false, 2000)
+      setTimeout(() => this.isAppLoading = false, 100)
     });
   }
 

@@ -2,7 +2,10 @@ import { Component } from '@angular/core';
 import { CdkDragDrop, moveItemInArray, transferArrayItem } from '@angular/cdk/drag-drop';
 import { DataService } from '../services/data.service';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { MatDialog } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
+import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Inject } from '@angular/core';
 
 @Component({
   selector: 'app-main',
@@ -11,12 +14,14 @@ import { Subscription } from 'rxjs';
 })
 export class MainComponent {
 
-  constructor(public dataService: DataService, private _snackBar: MatSnackBar) {
+  constructor(public dialog: MatDialog, public dataService: DataService, private _snackBar: MatSnackBar) {
 
   }
 
-  songs = [''];
-  guess = [''];
+  attempts = 0;
+  MAX_ATTEMPTS = 3;
+  songs = [] as any;
+  guess = [] as any;
   trueTopTracks = [];
 
   async ngOnInit(): Promise<void> {
@@ -27,7 +32,7 @@ export class MainComponent {
   }
 
   private transformTracks(tracks: any) {
-    const allSongs = tracks.map((track: any) => track.name.split(" - ")[0]);
+    const allSongs = tracks.map((track: any) => ({name: track.name.split(" - ")[0], correct: false, inPlace: false}));
     this.trueTopTracks = allSongs.slice(0, 5);
     allSongs.sort(() => (Math.random() > 0.5) ? 1 : -1)
     this.songs = allSongs.slice(0, 5);
@@ -47,12 +52,14 @@ export class MainComponent {
     }
   }
 
+  dragStarted() {
+    this.guess.forEach((track: any) => {
+      track.correct = false;
+      track.inPlace = false;
+    });
+  }
+
   canDragToGuess = () => {
-    /** if (this.guess.length == 5) {
-      this.openSnackBar("Guess list can't have more than 5 items");
-      return false;
-    }
-    return true; **/
     return this.guess.length < 5;
   }
 
@@ -65,12 +72,49 @@ export class MainComponent {
   }
 
   takeGuess() {
+    this.attempts++;
     this.trueTopTracks.forEach((topTrack, index) => {
-      console.log(this.guess[index]);
-      console.log(topTrack);
       if (this.guess[index] === topTrack) {
-        this.openSnackBar("Correct!");
+        this.guess[index].correct = true;
+        // this.openSnackBar("Correct!");
+      }
+      else {
+        if ((this.trueTopTracks as any).find((track: any) => track.name === this.guess[index].name)) {
+          this.guess[index].inPlace = true;
+        }
       }
     });
+    if (this.attempts === this.MAX_ATTEMPTS) {
+      this.openDialog();
+    }
   }
+
+  openDialog() {
+    const dialogRef = this.dialog.open(GameOverDialog, {
+      data: {didWin: false},
+      disableClose: true
+    });
+  }
+
+}
+@Component({
+  selector: 'gameover-dialog',
+  templateUrl: 'gameover-dialog.html',
+})
+export class GameOverDialog {
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data: any) {}
+
+  didWin: boolean = false;
+
+  ngOnInit() {
+    // will log the entire data object
+    this.didWin = this.data.didWin;
+  }
+  
+
+  retry = () => {
+    window.location.reload();
+  }
+
 }

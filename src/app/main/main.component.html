@@ -11,7 +11,7 @@
         class="example-list"
         [cdkDropListEnterPredicate]="canDragToBucket"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of songs" cdkDrag>{{item}}</div>
+        <div class="example-box" *ngFor="let item of songs" cdkDrag>{{item.name}}</div>
         </div>
     </div>
     
@@ -27,11 +27,12 @@
         class="example-list"
         [cdkDropListEnterPredicate]="canDragToGuess"
         (cdkDropListDropped)="drop($event)">
-        <div class="example-box" *ngFor="let item of guess; index as i" cdkDrag>{{i+1}}. {{item}}</div>
+            <div class="example-box" (cdkDragStarted)="dragStarted()" *ngFor="let item of guess; index as i" cdkDrag  [ngClass]="{'correct': item.correct, 'in_place': !item.correct && item.inPlace}">{{i+1}}. {{item.name}}</div>
         </div>
     </div>
 </div>
 
 <footer>
     <button mat-stroked-button color="accent" (click)="takeGuess()">I'm ready to take a guess!</button>
+    <span>({{attempts}}/{{MAX_ATTEMPTS}} attempts left)</span>
 </footer>

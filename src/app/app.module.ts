@@ -8,7 +8,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { MainComponent } from './main/main.component';
+import { GameOverDialog, MainComponent } from './main/main.component';
 import { DialogContentExampleDialog, HeaderComponent } from './header/header.component';
 import { DataService } from './services/data.service';
 
@@ -17,7 +17,8 @@ import { DataService } from './services/data.service';
     AppComponent,
     MainComponent,
     HeaderComponent,
-    DialogContentExampleDialog
+    DialogContentExampleDialog,
+    GameOverDialog
   ],
   imports: [
     BrowserModule,

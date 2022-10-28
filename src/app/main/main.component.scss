@@ -45,6 +45,13 @@
     cursor: move;
     background: #ffffff0d;
     font-size: 14px;
+    transition: .18s background-color;
+    &.correct {
+      background: green;
+    }
+    &.in_place {      
+      background: #ffff004f;
+    }
   }
   
   .cdk-drag-preview {
@@ -72,6 +79,7 @@
   }
 
   h2 {
+    font-size: 18px;
     text-align: center;
   }
   
@@ -82,11 +90,15 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: .5em;
     button {
         width: 80%;
         height: 50px;
         font-size: 20px;
         border-color: #0e7031;
         background: #0e7031;
+    }
+    span {
+      opacity: 0.75;
     }
 }
